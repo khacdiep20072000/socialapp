@@ -11,8 +11,8 @@ import {
   School,
   WorkOutline,
 } from "@mui/icons-material";
-
-import avatar from "../../assets/person/2.jpeg";
+import { Users } from "../../dummyData";
+import CloseFriend from "../CloseFriend/CloseFriend";
 
 const cx = classNames.bind(styles);
 
@@ -62,46 +62,9 @@ const Sidebar = () => {
         <button className={cx("button")}>Show more</button>
         <hr className={cx("hr")} />
         <ul className={cx("friends")}>
-          <li className={cx("friend")}>
-            <img src={avatar} alt="avatar" className={cx("avatar")} />
-            <span className={cx("name")}>Jane Doe</span>
-          </li>
-          <li className={cx("friend")}>
-            <img src={avatar} alt="avatar" className={cx("avatar")} />
-            <span className={cx("name")}>Jane Doe</span>
-          </li>
-          <li className={cx("friend")}>
-            <img src={avatar} alt="avatar" className={cx("avatar")} />
-            <span className={cx("name")}>Jane Doe</span>
-          </li>
-          <li className={cx("friend")}>
-            <img src={avatar} alt="avatar" className={cx("avatar")} />
-            <span className={cx("name")}>Jane Doe</span>
-          </li>
-          <li className={cx("friend")}>
-            <img src={avatar} alt="avatar" className={cx("avatar")} />
-            <span className={cx("name")}>Jane Doe</span>
-          </li>
-          <li className={cx("friend")}>
-            <img src={avatar} alt="avatar" className={cx("avatar")} />
-            <span className={cx("name")}>Jane Doe</span>
-          </li>
-          <li className={cx("friend")}>
-            <img src={avatar} alt="avatar" className={cx("avatar")} />
-            <span className={cx("name")}>Jane Doe</span>
-          </li>
-          <li className={cx("friend")}>
-            <img src={avatar} alt="avatar" className={cx("avatar")} />
-            <span className={cx("name")}>Jane Doe</span>
-          </li>
-          <li className={cx("friend")}>
-            <img src={avatar} alt="avatar" className={cx("avatar")} />
-            <span className={cx("name")}>Jane Doe</span>
-          </li>
-          <li className={cx("friend")}>
-            <img src={avatar} alt="avatar" className={cx("avatar")} />
-            <span className={cx("name")}>Jane Doe</span>
-          </li>
+          {Users.map((user) => (
+            <CloseFriend key={user.id} user={user} />
+          ))}
         </ul>
       </div>
     </div>
