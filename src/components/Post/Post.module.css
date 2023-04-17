@@ -50,9 +50,13 @@
 }
 
 .bottom {
+}
+
+.b-t {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 12px;
 }
 
 .b-left {
@@ -74,4 +78,38 @@
 .commentText {
   cursor: pointer;
   border-bottom: 1px dashed gray;
+}
+
+.br {
+  border-bottom: 1px solid gray;
+}
+
+.b-b {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.bt-post {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bt-like {
+  margin-right: 4px;
+  color: gray;
+}
+
+.liked > .bt-title,
+.liked > .bt-like {
+  color: rgb(32, 120, 244);
+  font-weight: 500;
+}
+
+.bt-title {
+  color: gray;
 }
