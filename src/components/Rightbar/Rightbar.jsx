@@ -9,7 +9,9 @@ import Online from "../Online/Online";
 
 const cx = classNames.bind(styles);
 
-const Rightbar = ({ profile }) => {
+const Rightbar = ({ user }) => {
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
   const HomeRightbar = () => {
     return (
       <>
@@ -39,22 +41,24 @@ const Rightbar = ({ profile }) => {
         <div className={cx("info")}>
           <div className={cx("infoItem")}>
             <span className={cx("infoKey")}>City:</span>
-            <span className={cx("infoValue")}>New York</span>
+            <span className={cx("infoValue")}>{user.city}</span>
           </div>
           <div className={cx("infoItem")}>
             <span className={cx("infoKey")}>From:</span>
-            <span className={cx("infoValue")}>Madrid</span>
+            <span className={cx("infoValue")}>{user.from}</span>
           </div>
           <div className={cx("infoItem")}>
-            <span className={cx("infoKey")}>Relationship:</span>
-            <span className={cx("infoValue")}>Single</span>
+            <span className={cx("infoKey")}>Follower:</span>
+            <span className={cx("infoValue")}>
+              {user.followers.length} people
+            </span>
           </div>
         </div>
         <h4 className={cx("title")}>User friends</h4>
         <div className={cx("followings")}>
           <div className={cx("following")}>
             <img
-              src="assets/person/1.jpeg"
+              src={`${PF}person/1.jpeg`}
               alt=""
               className={cx("followingImg")}
             />
@@ -62,7 +66,7 @@ const Rightbar = ({ profile }) => {
           </div>
           <div className={cx("following")}>
             <img
-              src="assets/person/2.jpeg"
+              src={`${PF}person/2.jpeg`}
               alt=""
               className={cx("followingImg")}
             />
@@ -70,7 +74,7 @@ const Rightbar = ({ profile }) => {
           </div>
           <div className={cx("following")}>
             <img
-              src="assets/person/3.jpeg"
+              src={`${PF}person/3.jpeg`}
               alt=""
               className={cx("followingImg")}
             />
@@ -78,7 +82,7 @@ const Rightbar = ({ profile }) => {
           </div>
           <div className={cx("following")}>
             <img
-              src="assets/person/4.jpeg"
+              src={`${PF}person/4.jpeg`}
               alt=""
               className={cx("followingImg")}
             />
@@ -86,7 +90,7 @@ const Rightbar = ({ profile }) => {
           </div>
           <div className={cx("following")}>
             <img
-              src="assets/person/5.jpeg"
+              src={`${PF}person/5.jpeg`}
               alt=""
               className={cx("followingImg")}
             />
@@ -94,7 +98,7 @@ const Rightbar = ({ profile }) => {
           </div>
           <div className={cx("following")}>
             <img
-              src="assets/person/6.jpeg"
+              src={`${PF}person/6.jpeg`}
               alt=""
               className={cx("followingImg")}
             />
@@ -108,7 +112,7 @@ const Rightbar = ({ profile }) => {
   return (
     <div className={cx("rightBar")}>
       <div className={cx("wrapper")}>
-        {profile ? <ProfileRightBar /> : <HomeRightbar />}
+        {user ? <ProfileRightBar /> : <HomeRightbar />}
       </div>
     </div>
   );
