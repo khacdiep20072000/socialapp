@@ -2,3 +2,9 @@
   --text-color: rgb(238, 238, 238);
   --background-color: #fff;
 }
+
+.error {
+  color: red;
+  font-size: 12px;
+  text-align: left;
+}

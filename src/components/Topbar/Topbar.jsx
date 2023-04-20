@@ -1,5 +1,6 @@
 import classNames from "classnames/bind";
 import { Chat, Notifications, Person, Search } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 import styles from "./Topbar.module.css";
 import avatar from "../../assets/person/1.jpeg";
@@ -10,7 +11,9 @@ const Topbar = () => {
   return (
     <div className={cx("container")}>
       <div className={cx("tb-left")}>
-        <span className={cx("logo")}>Lamasocial</span>
+        <Link to="/">
+          <span className={cx("logo")}>Lamasocial</span>
+        </Link>
       </div>
 
       <div className={cx("tb-center")}>

@@ -9,37 +9,55 @@ import {
   ThumbUp,
   ThumbUpOffAlt,
 } from "@mui/icons-material";
-import { Users } from "../../dummyData";
 import { useState } from "react";
+import axios from "axios";
+import { useQuery } from "react-query";
+import { format } from "timeago.js";
+import { Link } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
+const SERVER = "http://localhost:8800/api/";
+
+const fetchUsers = (userId) => {
+  return axios.get(`${SERVER}users?userId=${userId}`);
+};
+
 const Post = ({ post }) => {
-  const [like, setLike] = useState(post.like);
+  const [like, setLike] = useState(post.likes.length);
   const [isLike, setIsLike] = useState(false);
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const { isLoading, data } = useQuery(
+    ["users", post.userId],
+    () => fetchUsers(post.userId),
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
 
   const likeHandler = () => {
     setLike(isLike ? like - 1 : like + 1);
     setIsLike(!isLike);
   };
 
+  if (isLoading) return;
+
   return (
     <div className={cx("post")}>
       <div className={cx("wrapper")}>
         <div className={cx("top")}>
           <div className={cx("topLeft")}>
-            <img
-              src={
-                Users.filter((user) => user.id === post.userId)[0]
-                  .profilePicture
-              }
-              alt="avatar"
-              className={cx("profileImg")}
-            />
-            <span className={cx("username")}>
-              {Users.filter((user) => user.id === post.userId)[0].username}
-            </span>
-            <span className={cx("date")}>{post.date}</span>
+            <Link to={`/profile/${data.data.username}`}>
+              <img
+                src={
+                  PF + data.data.profilePicture || PF + "person/noAvatar.png"
+                }
+                alt="avatar"
+                className={cx("profileImg")}
+              />
+            </Link>
+            <span className={cx("username")}>{data.data.username}</span>
+            <span className={cx("date")}>{format(post.createdAt)}</span>
           </div>
           <div className={cx("topRight")}>
             <MoreVert />
@@ -48,7 +66,9 @@ const Post = ({ post }) => {
 
         <div className={cx("center")}>
           <span className={cx("text")}>{post?.desc}</span>
-          <img src={post.photo} alt="post" className={cx("postImg")} />
+          {post.img && (
+            <img src={PF + post.img} alt="post" className={cx("postImg")} />
+          )}
         </div>
 
         <div className={cx("bottom")}>
